@@ -1,0 +1,25 @@
+from heapq import heappop, heappush
+
+def h(s):
+    return sum(abs((int(c)-1)//3 - i//3) + abs((int(c)-1)%3 - i%3) for i, c in enumerate(s) if c != '0')
+
+def solve(start):
+    goal = '123456780'
+    adj = {0:[1,3],1:[0,2,4],2:[1,5],3:[0,4,6],4:[1,3,5,7],5:[2,4,8],6:[3,7],7:[4,6,8],8:[5,7]}
+    q, seen = [(h(start), 0, start, '')], set()
+    while q:
+        _, g, s, path = heappop(q)
+        if s == goal: return path
+        if s in seen: continue
+        seen.add(s)
+        z = s.index('0')
+        for j in adj[z]:
+            l = list(s)
+            l[z], l[j] = l[j], l[z]
+            ns = ''.join(l)
+            if ns not in seen:
+                heappush(q, (g+1+h(ns), g+1, ns, path + str(j)))
+    return "No solution"
+
+print(solve('724506831'))
+
