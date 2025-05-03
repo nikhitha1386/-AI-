@@ -1,0 +1,71 @@
+from collections import deque
+
+# Jug capacities
+jug1_capacity = 4
+jug2_capacity = 3
+goal = 2
+
+# To track visited states
+visited = set()
+
+def is_goal(state):
+    return state[0] == goal or state[1] == goal
+
+def get_successors(state):
+    x, y = state
+    successors = []
+
+    # Fill Jug1
+    successors.append((jug1_capacity, y))
+
+    # Fill Jug2
+    successors.append((x, jug2_capacity))
+
+    # Empty Jug1
+    successors.append((0, y))
+
+    # Empty Jug2
+    successors.append((x, 0))
+
+    # Pour Jug1 → Jug2
+    pour = min(x, jug2_capacity - y)
+    successors.append((x - pour, y + pour))
+
+    # Pour Jug2 → Jug1
+    pour = min(y, jug1_capacity - x)
+    successors.append((x + pour, y - pour))
+
+    return successors
+
+def bfs():
+    queue = deque()
+    queue.append(((0, 0), []))  # ((jug1, jug2), path)
+
+    while queue:
+        (state, path) = queue.popleft()
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+        path = path + [state]
+
+        if is_goal(state):
+            return path
+
+        for successor in get_successors(state):
+            queue.append((successor, path))
+
+    return None
+
+def main():
+    solution = bfs()
+    if solution:
+        print("Steps to reach goal:")
+        for step in solution:
+            print(f"Jug1: {step[0]}L, Jug2: {step[1]}L")
+    else:
+        print("No solution found.")
+
+if __name__ == "__main__":
+    main()
