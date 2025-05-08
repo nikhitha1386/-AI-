@@ -1,0 +1,14 @@
+from collections import deque
+q=deque()
+q.append((('A','dirty','dirty'),[]))
+V=set()
+while q:
+ s,p=q.popleft()
+ if s[1]=='clean' and s[2]=='clean':print(p);break
+ if s in V:continue
+ V.add(s)
+ loc,a,b=s
+ if s[1]=='dirty' and loc=='A':q.append((('A','clean',b),p+['clean A']))
+ if s[2]=='dirty' and loc=='B':q.append((('B',a,'clean'),p+['clean B']))
+ if loc=='A':q.append((('B',a,b),p+['move to B']))
+ if loc=='B':q.append((('A',a,b),p+['move to A']))
