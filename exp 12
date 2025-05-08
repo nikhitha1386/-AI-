@@ -1,0 +1,12 @@
+b = [[" "]*3 for _ in range(3)]
+w = lambda p: any(all(r == p for r in row) or all(b[i][j] == p for i in range(3)) for j, row in enumerate(b)) or all(b[i][i] == p for i in range(3)) or all(b[i][2-i] == p for i in range(3))
+t = lambda: all(c != " " for r in b for c in r)
+p = "X"
+while True:
+    [print(" | ".join(r)) or print("-"*5) for r in b]
+    r, c = map(int, input(f"{p} move (row col): ").split())
+    if b[r][c] != " ": print("Try again"); continue
+    b[r][c] = p
+    if w(p): [print(" | ".join(r)) or print("-"*5) for r in b]; print(f"{p} wins!"); break
+    if t(): [print(" | ".join(r)) or print("-"*5) for r in b]; print("Draw!"); break
+    p = "XO"[p == "X"]
