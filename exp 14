@@ -1,0 +1,58 @@
+import math
+
+def winner(b, p):
+    return any(all(c == p for c in r) for r in b) or any(all(b[i][j] == p for i in range(3)) for j in range(3)) or all(b[i][i] == p for i in range(3)) or all(b[i][2-i] == p for i in range(3))
+
+def minimax(b, depth, alpha, beta, max_turn):
+    if winner(b, 'X'): return -10 + depth
+    if winner(b, 'O'): return 10 - depth
+    if all(c != ' ' for r in b for c in r): return 0
+    best = -math.inf if max_turn else math.inf
+    for i in range(3):
+        for j in range(3):
+            if b[i][j] == ' ':
+                b[i][j] = 'O' if max_turn else 'X'
+                score = minimax(b, depth + 1, alpha, beta, not max_turn)
+                b[i][j] = ' '
+                if max_turn:
+                    best = max(best, score)
+                    alpha = max(alpha, best)
+                else:
+                    best = min(best, score)
+                    beta = min(beta, best)
+                if beta <= alpha: return best
+    return best
+
+def best_move(b):
+    best, move = -math.inf, None
+    for i in range(3):
+        for j in range(3):
+            if b[i][j] == ' ':
+                b[i][j] = 'O'
+                score = minimax(b, 0, -math.inf, math.inf, False)
+                b[i][j] = ' '
+                if score > best:
+                    best, move = score, (i, j)
+    return move
+
+def print_board(b):
+    for r in b: print(" | ".join(r))
+    print("-" * 5)
+
+def play():
+    b = [[' ']*3 for _ in range(3)]
+    while True:
+        print_board(b)
+        if all(c != ' ' for r in b for c in r): break
+        row, col = map(int, input("Player X move (row col): ").split())
+        if b[row][col] == ' ':
+            b[row][col] = 'X'
+        if winner(b, 'X'): break
+        print_board(b)
+        row, col = best_move(b)
+        b[row][col] = 'O'
+        if winner(b, 'O'): break
+    print_board(b)
+    print("Player O wins!" if winner(b, 'O') else "Player X wins!")
+
+play()
