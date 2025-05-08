@@ -1,0 +1,14 @@
+from collections import deque
+q=deque([((3,3,1),[])])
+V=set()
+while q:
+ s,p=q.popleft()
+ if s==(0,0,0):print(p);break
+ if s in V:continue
+ V.add(s)
+ for m,c in [(1,0),(0,1),(2,0),(0,2),(1,1)]:
+  a,b,d=s
+  m*=d*2-1;c*=d*2-1
+  na,nb,nd=a-m,b-c,1-d
+  if 0<=na<=3 and 0<=nb<=3 and (na==0 or na>=nb) and (3-na==0 or 3-na>=3-nb):
+   q.append(((na,nb,nd),p+[(na,nb,nd)]))
