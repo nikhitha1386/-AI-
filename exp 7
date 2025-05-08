@@ -1,0 +1,10 @@
+from collections import deque
+g={1:[2,3],2:[4],3:[4],4:[]}  # example graph
+q=deque([1])
+v=set()
+while q:
+ n=q.popleft()
+ if n in v:continue
+ print(n)
+ v.add(n)
+ q.extend(g[n])
