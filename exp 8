@@ -1,0 +1,8 @@
+g={1:[2,3],2:[4],3:[4],4:[]}
+s=[1];v=set()
+while s:
+ n=s.pop()
+ if n in v:continue
+ print(n)
+ v.add(n)
+ s+=g[n][::-1]
