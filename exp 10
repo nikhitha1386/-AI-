@@ -1,0 +1,27 @@
+from heapq import heappush, heappop
+
+def astar(start, goal, grid):
+    def h(a, b): return abs(a[0]-b[0]) + abs(a[1]-b[1])  # heuristic
+    open = [(h(start, goal), 0, start, [])]
+    visited = set()
+    while open:
+        est, cost, node, path = heappop(open)
+        if node in visited: continue
+        visited.add(node)
+        path = path + [node]
+        if node == goal: return path
+        for dx, dy in [(0,1),(1,0),(-1,0),(0,-1)]:
+            nx, ny = node[0]+dx, node[1]+dy
+            if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and not grid[nx][ny]:
+                heappush(open, (cost+1+h((nx,ny), goal), cost+1, (nx,ny), path))
+    return None
+
+# Example usage:
+grid = [[0,0,0,0],
+        [1,1,0,1],
+        [0,0,0,0],
+        [0,1,1,0]]
+
+start = (0,0)
+goal = (3,3)
+print(astar(start, goal, grid))
