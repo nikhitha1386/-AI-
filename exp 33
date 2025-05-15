@@ -1,0 +1,22 @@
+% Check if a character is a vowel
+vowel(a).
+vowel(e).
+vowel(i).
+vowel(o).
+vowel(u).
+vowel(A) :- char_type(A, upper), char_type(L, to_lower(A)), vowel(L).
+
+% Count vowels in a list of characters
+count_vowels([], 0).
+count_vowels([H|T], Count) :-
+    vowel(H),
+    count_vowels(T, RestCount),
+    Count is RestCount + 1.
+count_vowels([H|T], Count) :-
+    \+ vowel(H),
+    count_vowels(T, Count).
+
+% Convert word (atom) to list of chars and count vowels
+number_of_vowels(Word, Count) :-
+    atom_chars(Word, CharList),
+    count_vowels(CharList, Count).
