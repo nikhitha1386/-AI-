@@ -1,0 +1,15 @@
+% Facts using pattern matching on structure
+
+likes(mary, chocolate).
+likes(john, pizza).
+
+% Rule with pattern matching on argument
+food_type(chocolate, sweet).
+food_type(pizza, savory).
+
+% Query example:
+% ?- likes(Person, chocolate).
+% Person = mary.
+
+% ?- food_type(Food, sweet).
+% Food = chocolate.
