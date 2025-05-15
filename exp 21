@@ -1,0 +1,19 @@
+% hanoi(N, Source, Target, Auxiliary, Moves).
+% N - number of disks
+% Source - starting peg
+% Target - destination peg
+% Auxiliary - auxiliary peg
+% Moves - list of moves as move(From, To)
+
+hanoi(0, _, _, _, []) :- !.
+
+hanoi(N, Source, Target, Aux, Moves) :-
+    N > 0,
+    N1 is N - 1,
+    hanoi(N1, Source, Aux, Target, Moves1),
+    MoveDisk = move(Source, Target),
+    hanoi(N1, Aux, Target, Source, Moves2),
+    append(Moves1, [MoveDisk | Moves2], Moves).
+
+% Sample query:
+% ?- hanoi(3, left, right, center, Moves).
