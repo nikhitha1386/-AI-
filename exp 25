@@ -1,0 +1,5 @@
+% Initial state: monkey at door, box at window, monkey on floor, doesn't have banana
+initial_state(state(at_door, at_window, on_floor, has_not)).
+
+% Goal state: monkey has the banana
+goal_state(state(_, _, _, has)).
