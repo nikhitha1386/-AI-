@@ -1,0 +1,12 @@
+% food(Name, Type, CaloriesPerServing)
+
+food(chicken_breast, protein, 165).
+food(broccoli, vegetable, 55).
+food(rice, carbohydrate, 206).
+food(apple, fruit, 95).
+food(olive_oil, fat, 119).
+food(salmon, protein, 208).
+food(avocado, fat, 160).
+food(oatmeal, carbohydrate, 150).
+food(egg, protein, 78).
+food(spinach, vegetable, 23).
