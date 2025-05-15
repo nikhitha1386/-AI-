@@ -1,0 +1,17 @@
+% infer_new_fact(NewFact): infer a new fact using rules and known facts
+infer_new_fact(Fact) :-
+    rule(Fact),
+    \+ fact(Fact).
+
+% forward_chain: repeatedly infer new facts until none left
+forward_chain :-
+    infer_new_fact(Fact),
+    assertz(fact(Fact)),
+    !,            % cut to prevent backtracking, do one at a time
+    forward_chain.
+forward_chain.
+
+% To start forward chaining and see all facts:
+run :-
+    forward_chain,
+    listing(fact).
