@@ -1,0 +1,29 @@
+% Facts: gender
+male(john).
+male(mike).
+male(paul).
+male(tom).
+
+female(mary).
+female(susan).
+female(lisa).
+female(anna).
+
+% Facts: parent(Parent, Child)
+parent(john, mike).
+parent(mary, mike).
+parent(john, lisa).
+parent(mary, lisa).
+
+parent(mike, tom).
+parent(susan, tom).
+
+parent(lisa, anna).
+parent(paul, anna).
+
+% Rules
+
+% father(Father, Child)
+father(F, C) :- parent(F, C), male(F).
+
+% mother(Mother
