@@ -1,0 +1,4 @@
+?- ancestor(john, tom).
+% Prolog tries to prove ancestor(john, tom) by looking for parent and recursive ancestor facts.
+
+?- ancestor(mary, tom).
