@@ -1,0 +1,30 @@
+% author(ID, Name).
+author(1, 'Alice').
+author(2, 'Bob').
+
+% category(ID, Name).
+category(1, 'Technology').
+category(2, 'Travel').
+category(3, 'Food').
+
+% post(ID, Title, AuthorID, CategoryID, Content).
+post(101, 'Prolog Basics', 1, 1, 'An introduction to Prolog programming.').
+post(102, 'My Trip to Italy', 2, 2, 'Sharing experiences from my recent Italy trip.').
+post(103, 'Best Pasta Recipes', 1, 3, 'Delicious pasta recipes to try at home.').
+
+% Get posts by author name
+posts_by_author(AuthorName, Posts) :-
+    author(AuthorID, AuthorName),
+    findall(Title, post(_, Title, AuthorID, _, _), Posts).
+
+% Get posts by category name
+posts_by_category(CategoryName, Posts) :-
+    category(CategoryID, CategoryName),
+    findall(Title, post(_, Title, _, CategoryID, _), Posts).
+
+% Sample queries:
+% ?- posts_by_author('Alice', Posts).
+% Posts = ['Prolog Basics', 'Best Pasta Recipes'].
+
+% ?- posts_by_category('Travel', Posts).
+% Posts = ['My Trip to Italy'].
