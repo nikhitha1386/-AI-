@@ -1,0 +1,21 @@
+% Students: student(Name, StudentID).
+student('Alice', s101).
+student('Bob', s102).
+student('Charlie', s103).
+
+% Teachers: teacher(Name, SubjectCode).
+teacher('Dr. Smith', cs101).
+teacher('Prof. Jones', cs102).
+teacher('Dr. Taylor', cs103).
+
+% Subject enrollments: enrolled(StudentID, SubjectCode).
+enrolled(s101, cs101).
+enrolled(s101, cs102).
+enrolled(s102, cs101).
+enrolled(s103, cs103).
+
+% Teaches relation can be inferred from teacher facts:
+teaches(TeacherName, SubjectCode) :- teacher(TeacherName, SubjectCode).
+
+% Example Queries:
+% Who teaches CS101
