@@ -1,0 +1,18 @@
+% planet(Name, date(Year, Month, Day)).
+
+planet('Mercury', date(Unknown, unknown, unknown)).
+planet('Venus', date(Unknown, unknown, unknown)).
+planet('Earth', date(Unknown, unknown, unknown)).
+planet('Mars', date(Unknown, unknown, unknown)).
+planet('Jupiter', date(Unknown, unknown, unknown)).
+planet('Saturn', date(Unknown, unknown, unknown)).
+planet('Uranus', date(1781, 3, 13)).     % Discovered by William Herschel
+planet('Neptune', date(1846, 9, 23)).    % Discovered by Johann Galle
+planet('Pluto', date(1930, 2, 18)).      % Discovered by Clyde Tombaugh
+
+% Query examples:
+% When was Uranus discovered?
+% ?- planet('Uranus', DOB).
+
+% List all planets with known discovery dates
+% ?- planet(Name, date(Year, _, _)), Year \= Unknown.
