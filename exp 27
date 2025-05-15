@@ -1,0 +1,15 @@
+% edge(Node1, Node2, Cost).
+edge(a, b, 1).
+edge(a, c, 3).
+edge(b, d, 1).
+edge(c, d, 1).
+edge(d, e, 5).
+edge(c, f, 4).
+
+% heuristic(Node, HeuristicValue).
+heuristic(a, 7).
+heuristic(b, 6).
+heuristic(c, 4).
+heuristic(d, 2).
+heuristic(e, 0).  % Goal node
+heuristic(f, 5).
