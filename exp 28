@@ -1,0 +1,54 @@
+% Symptoms facts: patient(Name, Symptom).
+patient(john, fever).
+patient(john, cough).
+patient(john, sore_throat).
+
+patient(mary, headache).
+patient(mary, nausea).
+patient(mary, dizziness).
+
+patient(bob, fever).
+patient(bob, rash).
+patient(bob, joint_pain).
+
+% Disease rules based on symptoms
+disease(flu) :-
+    patient(_, fever),
+    patient(_, cough),
+    patient(_, sore_throat).
+
+disease(migraine) :-
+    patient(_, headache),
+    patient(_, nausea),
+    patient(_, dizziness).
+
+disease(dengue) :-
+    patient(_, fever),
+    patient(_, rash),
+    patient(_, joint_pain).
+
+% Diagnose a patient by checking symptoms
+diagnose(Patient, Disease) :-
+    patient(Patient, _),
+    disease(Disease),
+    has_symptoms(Patient, Disease).
+
+% Check if patient has all symptoms for a disease
+has_symptoms(Patient, flu) :-
+    patient(Patient, fever),
+    patient(Patient, cough),
+    patient(Patient, sore_throat).
+
+has_symptoms(Patient, migraine) :-
+    patient(Patient, headache),
+    patient(Patient, nausea),
+    patient(Patient, dizziness).
+
+has_symptoms(Patient, dengue) :-
+    patient(Patient, fever),
+    patient(Patient, rash),
+    patient(Patient, joint_pain).
+
+% Example query:
+% ?- diagnose(john, Disease).
+% Disease = flu.
