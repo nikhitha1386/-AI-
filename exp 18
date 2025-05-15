@@ -1,0 +1,9 @@
+% Prolog database of people with their date of birth
+
+% Format: person(Name, DateOfBirth).
+% DateOfBirth format: date(Year, Month, Day)
+
+person('Alice Smith', date(1990, 5, 12)).
+person('Bob Johnson', date(1985, 11, 3)).
+person('Charlie Brown', date(2000, 1, 25)).
+person('Diana Prince', date(1995, 7, 19)).
