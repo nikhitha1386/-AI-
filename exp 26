@@ -1,0 +1,14 @@
+% fruit(FruitName, Color).
+
+fruit(apple, red).
+fruit(banana, yellow).
+fruit(orange, orange).
+fruit(grape, purple).
+fruit(watermelon, green).
+fruit(kiwi, brown).
+fruit(mango, yellow).
+fruit(blueberry, blue).
+fruit(cherry, red).
+fruit(pear, green).
+fruit(lemon, yellow).
+fruit(pineapple, brown).
