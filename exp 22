@@ -1,0 +1,21 @@
+% bird(Name).
+bird(sparrow).
+bird(eagle).
+bird(penguin).
+bird(ostrich).
+bird(parrot).
+bird(bat).  % Not actually a bird, but added for edge case
+
+% flightless(Name). These birds cannot fly.
+flightless(penguin).
+flightless(ostrich).
+
+% Rule: can_fly(Bird) is true if it's a bird and not flightless.
+can_fly(Bird) :-
+    bird(Bird),
+    \+ flightless(Bird).
+
+% Sample Queries:
+% ?- can_fly(sparrow).         % true
+% ?- can_fly(penguin).         % false
+% ?- can_fly(Bird).            % lists all birds that can fly
